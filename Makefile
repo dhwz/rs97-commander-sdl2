@@ -1,7 +1,7 @@
 CC ?= g++
 target = DinguxCommander
 
-RESDIR ?= /storage/.config/distribution/configs/fm/res/
+RESDIR ?= /usr/share/DinguxCommander/res/
 FILE_SYSTEM ?= /storage
 PATH_DEFAULT ?= /media
 PATH_DEFAULT_RIGHT ?= /storage/roms
