@@ -159,10 +159,10 @@ std::string input_start_btn;
            key_event.key.keysym.sym = MYKEY_RIGHT;
 //           std::cout << "You pressed right! " << '\n';
        } else if (button.find("button="+input_a_btn+" s") != std::string::npos) { 
-           key_event.key.keysym.sym = MYKEY_PARENT;
+           key_event.key.keysym.sym = MYKEY_OPEN;
 //           std::cout << "You pressed a! " << '\n';
        } else if (button.find("button="+input_b_btn+" s") != std::string::npos) { 
-           key_event.key.keysym.sym = MYKEY_OPEN;
+           key_event.key.keysym.sym = MYKEY_PARENT;
 //           std::cout << "You pressed b! " << '\n';
        } else if (button.find("button="+input_x_btn+" s") != std::string::npos) { 
            key_event.key.keysym.sym = MYKEY_OPERATION;

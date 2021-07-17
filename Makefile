@@ -1,45 +1,43 @@
 CC ?= g++
 target = DinguxCommander
 
-RESDIR ?= /emuelec/configs/fm/res/
+RESDIR ?= /storage/.config/distribution/configs/fm/res/
 FILE_SYSTEM ?= /storage
 PATH_DEFAULT ?= /media
 PATH_DEFAULT_RIGHT ?= /storage/roms
 
-# set variables for the OGA screen
-ifeq ($(ODROIDGO), 1)
+ifeq ($(RG351V), 1)
+	SCREENW := 640
+	SCREENH := 480
+	FONTSIZE := 19
+	FONTTOUSE := $(RESDIR)/NotoSans-Regular.ttf
+	H_PADDING_TOP := 2
+	F_PADDING_TOP := 2
+	MAXLINES := 16
+	LINESPACE := $(shell echo $$(($(SCREENH)/$(MAXLINES))))
+	HEADERH := $(LINESPACE)
+	FOOTERH := $(LINESPACE)
+	LINEH := $(LINESPACE)
+	VIEWER_LINE_H := $(LINESPACE)
+else
 	SCREENW := 480
 	SCREENH := 320
-	FONTSIZE := 8
-	HEADERH := 17
-	H_PADDING_TOP := 3
-	FOOTERH := 13
-	F_PADDING_TOP := 1
-	LINEH := 15
-	FONTTOUSE := $(RESDIR)/Fiery_Turk.ttf
-	VIEWER_LINE_H := 13
-else
-# todo detect resolution and set window to correct size
-	SCREENW ?= 1920
-	SCREENH ?= 1080
-	FONTSIZE ?= 24
-	HEADERH ?= 34
-	H_PADDING_TOP ?= 6
-	FOOTERH ?= 26
-	F_PADDING_TOP ?= 2
-	LINEH ?= 34
-	FONTTOUSE ?= /usr/share/retroarch-assets/ozone/bold.ttf
-	VIEWER_LINE_H ?= 26
+	FONTSIZE := 12
+	FONTTOUSE := $(RESDIR)/NotoSans-Regular.ttf
+	H_PADDING_TOP := 2
+	F_PADDING_TOP := 2
+	MAXLINES := 16
+	LINESPACE := $(shell echo $$(($(SCREENH)/$(MAXLINES))))
+	HEADERH := $(LINESPACE)
+	FOOTERH := $(LINESPACE)
+	LINEH := $(LINESPACE)
+	VIEWER_LINE_H := $(LINESPACE)
 endif
-
 
 SRCS=$(wildcard ./*.cpp)
 OBJS=$(patsubst %cpp,%o,$(SRCS))
 
-#INCLUDE = -I/usr/include/SDL2
 INCLUDE =  $(shell sdl2-config --cflags)
-#LIB = -L/usr/lib -lSDL2 -lSDL2_image -lSDL2_ttf 
-#LIB = -lSDL2 -lSDL2_image -lSDL2_ttf 
 LIB = $(shell sdl2-config --libs) -lSDL2_image -lSDL2_ttf -lSDL2_gfx
 
 all:$(OBJS)
@@ -50,4 +48,3 @@ all:$(OBJS)
 
 clean:
 	rm $(OBJS) $(target) -f
-
