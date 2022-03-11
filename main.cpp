@@ -61,7 +61,7 @@ int main(int argc, char** argv)
    int i;
    
       // Get current display mode of all displays.
-  for(i = 0; i < SDL_GetNumVideoDisplays(); ++i){
+  for(i = SDL_GetNumVideoDisplays() - 1; i >= 0; i--){
 
     int should_be_zero = SDL_GetCurrentDisplayMode(i, &current);
 
