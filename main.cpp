@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cstdlib>
+#include <cstdint>
 #include <iostream>
 #include <unistd.h>
 #include <SDL.h>
